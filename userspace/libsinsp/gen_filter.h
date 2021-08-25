@@ -16,6 +16,9 @@ along with Falco.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
+#include <memory>
+#include <string>
 #include <vector>
 
 /*
@@ -155,7 +158,7 @@ public:
 	//
 	// An expression is consistent if all its checks are of the same type (or/and).
 	//
-	// This method returns the expression operator (BO_AND/BO_OR/BO_NONE) if the 
+	// This method returns the expression operator (BO_AND/BO_OR/BO_NONE) if the
 	// expression is consistent. It returns -1 if the expression is not consistent.
 	//
 	int32_t get_expr_boolop();
@@ -205,4 +208,46 @@ public:
 
 	// Create a new filtercheck
 	virtual gen_event_filter_check *new_filtercheck(const char *fldname) = 0;
+};
+
+class gen_event_formatter
+{
+public:
+	enum output_format {
+		OF_NORMAL = 0,
+		OF_JSON   = 1
+	};
+
+	gen_event_formatter();
+	virtual ~gen_event_formatter();
+
+	virtual void set_format(output_format of, const std::string &format) = 0;
+
+	// Format the output string with the configured format
+	virtual bool tostring(gen_event *evt, std::string &output) = 0;
+
+	// In some cases, it may be useful to format an output string
+	// with a custom format.
+	virtual bool tostring_withformat(gen_event *evt, std::string &output, output_format of) = 0;
+
+	// The map should map from field name, without the '%'
+	// (e.g. "proc.name"), to field value (e.g. "nginx")
+	virtual bool get_field_values(gen_event *evt, std::map<std::string, std::string> &fields) = 0;
+
+	virtual output_format get_output_format() = 0;
+};
+
+
+class gen_event_formatter_factory
+{
+public:
+	gen_event_formatter_factory();
+	virtual ~gen_event_formatter_factory();
+
+	// This should be called before any calls to
+	// create_formatter(), and changes the output format of new
+	// formatters.
+	virtual void set_output_format(gen_event_formatter::output_format of) = 0;
+
+	virtual std::shared_ptr<gen_event_formatter> create_formatter(const std::string &format) = 0;
 };

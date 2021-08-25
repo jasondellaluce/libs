@@ -248,3 +248,18 @@ void gen_event_filter::add_check(gen_event_filter_check* chk)
 {
 	m_curexpr->add_check((gen_event_filter_check *) chk);
 }
+gen_event_formatter::gen_event_formatter()
+{
+}
+
+gen_event_formatter::~gen_event_formatter()
+{
+}
+
+gen_event_formatter_factory::gen_event_formatter_factory()
+{
+}
+
+gen_event_formatter_factory::~gen_event_formatter_factory()
+{
+}
