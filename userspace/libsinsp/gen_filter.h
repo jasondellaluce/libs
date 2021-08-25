@@ -16,6 +16,7 @@ along with Falco.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <set>
 #include <vector>
 
 /*
@@ -109,6 +110,19 @@ public:
 	virtual bool compare(gen_event *evt) = 0;
 	virtual uint8_t* extract(gen_event *evt, uint32_t* len, bool sanitize_strings = true) = 0;
 
+	// Return all event types used by this filtercheck. This method is
+	// optional--by default it returns an empty set, meaning that
+	// no specific event types are used.
+	//
+	// The set of event types can can be a superset of the actual
+	// event types used. For example, there's no need to deeply
+	// parse logical operators to find an exact set of event
+	// types. This method is used to provide an initial simple
+	// test against an event type to determine if the filter needs
+	// to be evaluated. So additional event types are okay,
+	// missing event types could result in problems.
+	virtual std::set<uint16_t> evttypes();
+
 	//
 	// Configure numeric id to be set on events that match this filter
 	//
@@ -150,12 +164,15 @@ public:
 
 	bool compare(gen_event *evt);
 
+	// Return all event types used by this filter expression.
+	std::set<uint16_t> evttypes();
+
 	uint8_t* extract(gen_event *evt, uint32_t* len, bool sanitize_strings = true);
 
 	//
 	// An expression is consistent if all its checks are of the same type (or/and).
 	//
-	// This method returns the expression operator (BO_AND/BO_OR/BO_NONE) if the 
+	// This method returns the expression operator (BO_AND/BO_OR/BO_NONE) if the
 	// expression is consistent. It returns -1 if the expression is not consistent.
 	//
 	int32_t get_expr_boolop();
@@ -183,6 +200,9 @@ public:
 	void push_expression(boolop op);
 	void pop_expression();
 	void add_check(gen_event_filter_check* chk);
+
+	// Return all event types used by this filter.
+	std::set<uint16_t> evttypes();
 
 	gen_event_filter_expression* m_filter;
 
