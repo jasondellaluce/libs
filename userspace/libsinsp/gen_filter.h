@@ -16,6 +16,8 @@ along with Falco.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <list>
+#include <string>
 #include <vector>
 
 /*
@@ -197,6 +199,31 @@ class gen_event_filter_factory
 {
 public:
 
+	// A struct describing a single filtercheck field ("ka.user")
+	struct filter_field_info
+	{
+		// The name of the field
+		std::string name;
+
+		// A description of the field
+		std::string desc;
+	};
+
+	// A struct describing a group of filtercheck fields ("ka")
+	struct filter_fieldclass_info
+	{
+		// The name of the group of fields
+		std::string name;
+
+		// A short description for the fields
+		std::string desc;
+
+		// Additional information about proper use of the fields
+		std::string class_info;
+
+		std::list<filter_field_info> fields;
+	};
+
 	gen_event_filter_factory() {};
 	virtual ~gen_event_filter_factory() {};
 
@@ -205,4 +232,7 @@ public:
 
 	// Create a new filtercheck
 	virtual gen_event_filter_check *new_filtercheck(const char *fldname) = 0;
+
+	// Return the set of fields supported by this factory
+	virtual std::list<filter_fieldclass_info> get_fields() = 0;
 };
