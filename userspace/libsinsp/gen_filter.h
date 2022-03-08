@@ -216,14 +216,14 @@ public:
 	  \param evt Pointer that needs to be filtered.
 	  \return true if the event is accepted by the filter, false if it's rejected.
 	*/
-	bool run(gen_event *evt);
+	virtual bool run(gen_event *evt);
 	void push_expression(boolop op);
 	void pop_expression();
 	void add_check(gen_event_filter_check* chk);
 
 	// Return all event types used by this filter. It's used in
 	// programs like falco to speed up rule evaluation.
-	std::set<uint16_t> evttypes();
+	virtual std::set<uint16_t> evttypes();
 
 	gen_event_filter_expression* m_filter;
 

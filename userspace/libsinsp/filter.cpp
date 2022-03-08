@@ -41,6 +41,7 @@ limitations under the License.
 #include "filterchecks.h"
 #include "value_parser.h"
 #include "filter/parser.h"
+#include "filter/bdd.h"
 #ifndef _WIN32
 #include "arpa/inet.h"
 #endif
@@ -548,7 +549,8 @@ sinsp_filter_check::sinsp_filter_check()
 	m_val_storages = vector<vector<uint8_t>> (1, vector<uint8_t>(256));
 	m_val_storages_min_size = (numeric_limits<uint32_t>::max)();
 	m_val_storages_max_size = (numeric_limits<uint32_t>::min)();
-
+	m_extraction_cache_entry = new check_extraction_cache_entry();
+	m_eval_cache_entry = new check_eval_cache_entry();
 	// Do this once
 	if(s_all_event_types.size() == 0)
 	{
@@ -1416,34 +1418,8 @@ sinsp_filter* sinsp_filter_compiler::compile()
 		}
 	}
 
-	// create new filter using factory
-	auto new_filter = m_factory->new_filter();
-	auto new_sinsp_filter = dynamic_cast<sinsp_filter*>(new_filter);
-	if (new_sinsp_filter == nullptr)
-	{
-		ASSERT(false);
-		delete new_filter;
-		throw sinsp_exception("filter error: factory did not create a sinsp_filter");
-	}
-
-	// setup compiler state and start compilation
-	m_filter = new_sinsp_filter;
-	m_last_boolop = BO_NONE;
-	m_expect_values = false;
-	try 
-	{
-		m_flt_ast->accept(*this);
-	}
-	catch (const sinsp_exception& e)
-	{
-		delete new_sinsp_filter;
-		m_filter = NULL;
-		throw e;
-	}
-
-	// return compiled filter
-	m_filter = NULL;
-	return new_sinsp_filter;
+	bdd_event_filter_compiler compiler;
+	return compiler.compile(m_factory, m_flt_ast, m_check_id);		
 }
 
 void sinsp_filter_compiler::visit(libsinsp::filter::ast::and_expr& e)

@@ -55,6 +55,7 @@ endif()
 set(SINSP_SOURCES
 	filter/ast.cpp
 	filter/parser.cpp
+	filter/bdd.cpp
 	container.cpp
 	container_engine/container_engine_base.cpp
 	container_engine/static_container.cpp
