@@ -17,28 +17,16 @@ limitations under the License.
 
 #pragma once
 
-#include "filtercheck.h"
-
-//
-// user checks
-//
-class sinsp_filter_check_user : public sinsp_filter_check
-{
-public:
-	enum check_type
-	{
-		TYPE_UID = 0,
-		TYPE_NAME = 1,
-		TYPE_HOMEDIR = 2,
-		TYPE_SHELL = 3,
-		TYPE_LOGINUID = 4,
-		TYPE_LOGINNAME = 5,
-	};
-
-	sinsp_filter_check_user();
-	sinsp_filter_check* allocate_new();
-	uint8_t* extract(sinsp_evt *evt, OUT uint32_t* len, bool sanitize_strings = true);
-
-	uint32_t m_uid;
-	string m_strval;
-};
+#include "filterchecks/generic.h"
+#include "filterchecks/event.h"
+#include "filterchecks/thread.h"
+#include "filterchecks/user.h"
+#include "filterchecks/group.h"
+#include "filterchecks/container.h"
+#include "filterchecks/fd.h"
+#include "filterchecks/syslog.h"
+#include "filterchecks/fdlist.h"
+#include "filterchecks/k8s.h"
+#include "filterchecks/mesos.h"
+#include "filterchecks/tracer.h"
+#include "filterchecks/evtin.h"

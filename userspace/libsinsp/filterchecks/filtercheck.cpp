@@ -26,11 +26,24 @@ limitations under the License.
 
 #ifdef HAS_FILTERING
 #include "filter.h"
-#include "filterchecks.h"
 #include "plugin.h"
 #include "protodecoder.h"
 #include "tracers.h"
 #include "value_parser.h"
+
+#include "generic.h"
+#include "event.h"
+#include "thread.h"
+#include "user.h"
+#include "group.h"
+#include "container.h"
+#include "fd.h"
+#include "syslog.h"
+#include "fdlist.h"
+#include "k8s.h"
+#include "mesos.h"
+#include "tracer.h"
+#include "evtin.h"
 
 extern sinsp_evttables g_infotables;
 int32_t g_screen_w = -1;
