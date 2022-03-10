@@ -1798,3 +1798,31 @@ unsigned int read_num_possible_cpus(void)
 
 	return possible_cpus;
 }
+
+int32_t gmt2local(time_t t)
+{
+	int dt, dir;
+	struct tm *gmt, *loc;
+	struct tm sgmt;
+
+	if(t == 0)
+	{
+		t = time(NULL);
+	}
+
+	gmt = &sgmt;
+	*gmt = *gmtime(&t);
+	loc = localtime(&t);
+
+	dt = (loc->tm_hour - gmt->tm_hour) * 60 * 60 + (loc->tm_min - gmt->tm_min) * 60;
+
+	dir = loc->tm_year - gmt->tm_year;
+	if(dir == 0)
+	{
+		dir = loc->tm_yday - gmt->tm_yday;
+	}
+
+	dt += dir * 24 * 60 * 60;
+
+	return dt;
+}

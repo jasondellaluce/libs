@@ -28,8 +28,6 @@ bool flt_compare_avg(cmpop op, ppm_param_type type, void* operand1, void* operan
 bool flt_compare_ipv4net(cmpop op, uint64_t operand1, const ipv4net* operand2);
 bool flt_compare_ipv6net(cmpop op, const ipv6addr *operand1, const ipv6net *operand2);
 
-int32_t gmt2local(time_t t);
-
 class operand_info
 {
 public:
