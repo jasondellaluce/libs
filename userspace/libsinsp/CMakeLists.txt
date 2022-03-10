@@ -65,7 +65,21 @@ set(SINSP_SOURCES
 	fdinfo.cpp
 	filter.cpp
 	fields_info.cpp
-	filterchecks/filtercheck.cpp
+	filterchecks/globals.cpp
+	filterchecks/internal.cpp
+	filterchecks/generic.cpp
+	filterchecks/event.cpp
+	filterchecks/thread.cpp
+	filterchecks/user.cpp
+	filterchecks/group.cpp
+	filterchecks/container.cpp
+	filterchecks/fd.cpp
+	filterchecks/syslog.cpp
+	filterchecks/fdlist.cpp
+	filterchecks/k8s.cpp
+	filterchecks/mesos.cpp
+	filterchecks/tracer.cpp
+	filterchecks/evtin.cpp
 	filter_check_list.cpp
 	gen_filter.cpp
 	http_parser.c
