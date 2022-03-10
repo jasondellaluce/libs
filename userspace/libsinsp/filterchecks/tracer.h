@@ -23,7 +23,6 @@ limitations under the License.
 //
 // Tracers
 //
-#define TEXT_ARG_ID -1000000
 
 class sinsp_filter_check_tracer : public sinsp_filter_check
 {
