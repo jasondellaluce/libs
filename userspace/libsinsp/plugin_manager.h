@@ -81,6 +81,15 @@ public:
 	}
 
 	/*!
+		\brief Returns a plugin given its name.
+	*/
+	inline std::shared_ptr<sinsp_plugin> plugin_by_name(const std::string& name) const
+	{
+		auto it = m_plugins_name_index.find(name);
+		return it != m_plugins_name_index.end() ? m_plugins[it->second] : nullptr;
+	}
+
+	/*!
 		\brief Returns a the index of a source name as in the order of sources()
 		given a plugin id
 	*/
@@ -91,9 +100,19 @@ public:
 		return found ? it->second : 0;
 	}
 
+	// TODO(jasondellaluce): add docs for this
+	typedef std::unordered_map<std::string, std::vector<ss_plugin_metric>> metrics_t;
+
+	// TODO(jasondellaluce): add docs for this
+	void metrics(metrics_t& metrics) const;
+
+	// TODO(jasondellaluce): add docs for this
+	void metrics(const std::string plugin_name, std::vector<ss_plugin_metric>& metrics) const;
+
 private:
 	std::vector<std::shared_ptr<sinsp_plugin>> m_plugins;
 	std::vector<std::string> m_source_names;
 	std::unordered_map<uint32_t, uint32_t> m_plugins_id_index;
 	std::unordered_map<uint32_t, uint32_t> m_plugins_id_source_index;
+	std::unordered_map<std::string, uint32_t> m_plugins_name_index;
 };

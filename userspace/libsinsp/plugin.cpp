@@ -433,6 +433,23 @@ std::string sinsp_plugin::get_init_schema(ss_plugin_schema_type& schema_type) co
 	return std::string("");
 }
 
+void sinsp_plugin::get_metrics(std::vector<ss_plugin_metric>& metrics) const
+{
+	if (m_handle->api.get_metrics != NULL)
+	{
+		uint32_t len;
+		auto new_metrics = m_handle->api.get_metrics(m_state, &len);
+		if (len > 0 && new_metrics)
+		{
+			metrics.clear();
+			for (uint32_t i = 0; i < len; i++)
+			{
+				metrics.push_back(metrics[i]);
+			}
+		}
+	}
+}
+
 void sinsp_plugin::validate_init_config(std::string& config)
 {
 	ss_plugin_schema_type schema_type;

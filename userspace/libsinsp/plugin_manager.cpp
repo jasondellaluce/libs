@@ -24,6 +24,7 @@ sinsp_plugin_manager::~sinsp_plugin_manager()
 	m_source_names.clear();
 	m_plugins_id_index.clear();
 	m_plugins_id_source_index.clear();
+	m_plugins_name_index.clear();
 }
 
 void sinsp_plugin_manager::add(std::shared_ptr<sinsp_plugin> plugin)
@@ -39,6 +40,7 @@ void sinsp_plugin_manager::add(std::shared_ptr<sinsp_plugin> plugin)
 	}
 	auto plugin_index = m_plugins.size();
 	m_plugins.push_back(plugin);
+	m_plugins_name_index[plugin->name()] = plugin_index;
 	if (plugin->caps() & CAP_SOURCING)
 	{
 		auto source_index = m_source_names.size();
@@ -46,4 +48,21 @@ void sinsp_plugin_manager::add(std::shared_ptr<sinsp_plugin> plugin)
 		m_plugins_id_index[plugin->id()] = plugin_index;
 		m_plugins_id_source_index[plugin->id()] = source_index;
 	}	
+}
+
+void sinsp_plugin_manager::metrics(metrics_t& metrics) const
+{
+	for (const auto &p : m_plugins)
+	{
+		p->get_metrics(metrics[p->name()]);
+	}
+}
+
+void sinsp_plugin_manager::metrics(const std::string plugin_name, std::vector<ss_plugin_metric>& metrics) const
+{
+	const auto& p = plugin_by_name(plugin_name);
+	if (p)
+	{
+		p->get_metrics(metrics);
+	}
 }

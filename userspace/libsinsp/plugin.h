@@ -56,6 +56,8 @@ public:
 	virtual const sinsp_version &required_api_version() const = 0;
 
 	virtual std::string get_init_schema(ss_plugin_schema_type& schema_type) const = 0;
+
+	virtual void get_metrics(std::vector<ss_plugin_metric>& metrics) const  = 0;
 };
 
 class sinsp_plugin_cap_sourcing: public sinsp_plugin_cap_common
@@ -130,6 +132,7 @@ public:
 	virtual const sinsp_version &plugin_version() const override;
 	virtual const sinsp_version &required_api_version() const override;
 	virtual std::string get_init_schema(ss_plugin_schema_type& schema_type) const override;
+	virtual void get_metrics(std::vector<ss_plugin_metric>& metrics) const override;
 	virtual plugin_caps_t caps() const override;
 
 	/** Event Sourcing **/
