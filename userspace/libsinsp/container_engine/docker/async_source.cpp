@@ -22,6 +22,7 @@ limitations under the License.
 #include "utils.h"
 #include <unordered_set>
 
+using namespace std;
 using namespace libsinsp::container_engine;
 
 bool docker_async_source::m_query_image_info = true;

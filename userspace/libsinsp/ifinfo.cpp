@@ -18,6 +18,8 @@ limitations under the License.
 #include "sinsp.h"
 #include "sinsp_int.h"
 
+using namespace std;
+
 sinsp_network_interfaces::sinsp_network_interfaces(sinsp* inspector)
 	: m_inspector(inspector)
 {

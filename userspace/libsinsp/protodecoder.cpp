@@ -23,6 +23,8 @@ limitations under the License.
 #include "sinsp_int.h"
 #include "protodecoder.h"
 
+using namespace std;
+
 extern sinsp_protodecoder_list g_decoderlist;
 
 ///////////////////////////////////////////////////////////////////////////////

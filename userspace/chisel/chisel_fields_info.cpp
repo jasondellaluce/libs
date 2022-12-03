@@ -27,6 +27,8 @@ limitations under the License.
 #include "chisel.h"
 #include "chisel_fields_info.h"
 
+using namespace std;
+
 // Must match the value in the zsh tab completion
 #define DESCRIPTION_TEXT_START 16
 

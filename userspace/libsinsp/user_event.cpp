@@ -20,6 +20,8 @@ limitations under the License.
 #include "user_event.h"
 #include "user_event_logger.h"
 
+using namespace std;
+
 //
 // event_scope
 //

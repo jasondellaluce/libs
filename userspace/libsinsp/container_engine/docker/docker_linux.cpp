@@ -19,6 +19,7 @@ limitations under the License.
 #include "runc.h"
 #include "sinsp_int.h"
 
+using namespace std;
 using namespace libsinsp::container_engine;
 using namespace libsinsp::runc;
 

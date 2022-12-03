@@ -60,6 +60,8 @@ limitations under the License.
 #include "tracer_emitter.h"
 #endif
 
+using namespace std;
+
 void on_new_entry_from_proc(void* context, scap_t* handle, int64_t tid, scap_threadinfo* tinfo,
 							scap_fdinfo* fdinfo);
 

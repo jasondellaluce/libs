@@ -38,6 +38,7 @@ limitations under the License.
 #include "container.h"
 #include "utils.h"
 
+using namespace std;
 using namespace libsinsp;
 
 sinsp_container_manager::sinsp_container_manager(sinsp* inspector, bool static_container, const std::string static_id, const std::string static_name, const std::string static_image) :

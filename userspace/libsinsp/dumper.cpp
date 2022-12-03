@@ -20,6 +20,8 @@ limitations under the License.
 #include "scap.h"
 #include "dumper.h"
 
+using namespace std;
+
 sinsp_dumper::sinsp_dumper(sinsp* inspector)
 {
 	m_inspector = inspector;

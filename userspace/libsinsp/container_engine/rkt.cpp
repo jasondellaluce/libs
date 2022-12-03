@@ -22,6 +22,7 @@ limitations under the License.
 #include "sinsp.h"
 #include "sinsp_int.h"
 
+using namespace std;
 using namespace libsinsp::container_engine;
 
 bool rkt::match(container_cache_interface *cache, sinsp_threadinfo *tinfo, sinsp_container_info& container_info, string& rkt_podid, string& rkt_appname, bool query_os_for_missing_info)

@@ -59,6 +59,7 @@ void *memmem(const void *haystack, size_t haystacklen, const void *needle, size_
 #include <netdb.h>
 #endif
 
+using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
 // type-based comparison functions

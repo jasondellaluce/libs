@@ -26,6 +26,8 @@ limitations under the License.
 #include <sinsp.h>
 #include "fields_info.h"
 
+using namespace std;
+
 static void list_fields_markdown(std::list<gen_event_filter_factory::filter_fieldclass_info> &fld_classes)
 {
 	for(auto &fld_class : fld_classes)

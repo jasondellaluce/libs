@@ -18,6 +18,8 @@ limitations under the License.
 #include "sinsp_int.h"
 #include "cyclewriter.h"
 
+using namespace std;
+
 cycle_writer::cycle_writer(bool is_live) :
 	m_base_file_name(""),
 	m_rollover_mb(0L),

@@ -49,6 +49,8 @@ bool should_drop(sinsp_evt *evt);
 #include "container_engine/docker/async_source.h"
 #endif
 
+using namespace std;
+
 extern sinsp_protodecoder_list g_decoderlist;
 extern sinsp_evttables g_infotables;
 

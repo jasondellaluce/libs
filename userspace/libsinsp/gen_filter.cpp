@@ -24,6 +24,8 @@ limitations under the License.
 #include "sinsp.h"
 #include "sinsp_int.h"
 
+using namespace std;
+
 gen_event::gen_event()
 {
 }

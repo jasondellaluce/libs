@@ -20,6 +20,8 @@ limitations under the License.
 #include "sinsp_int.h"
 #include "tracers.h"
 
+using namespace std;
+
 sinsp_tracerparser::sinsp_tracerparser(sinsp *inspector)
 {
 	m_inspector = inspector;

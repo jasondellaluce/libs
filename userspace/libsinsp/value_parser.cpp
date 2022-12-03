@@ -25,6 +25,8 @@ limitations under the License.
 #include <netdb.h>
 #endif
 
+using namespace std;
+
 size_t sinsp_filter_value_parser::string_to_rawval(const char* str, uint32_t len, uint8_t *storage, string::size_type max_len, ppm_param_type ptype)
 {
 	size_t parsed_len;

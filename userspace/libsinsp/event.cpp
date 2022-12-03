@@ -34,6 +34,8 @@ limitations under the License.
 
 #include "scap.h"
 
+using namespace std;
+
 extern sinsp_evttables g_infotables;
 
 #define SET_NUMERIC_FORMAT(resfmt, fmt, ostr, ustr, xstr) do {	\

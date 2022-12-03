@@ -37,6 +37,8 @@ limitations under the License.
 #include <sys/ioctl.h>
 #include <cstring>
 
+using namespace std;
+
 mesos_http::mesos_http(mesos& m, const uri& url,
 					bool discover_mesos_lead_master,
 					bool discover_marathon,

@@ -23,6 +23,7 @@ limitations under the License.
 #include "sinsp_with_test_input.h"
 #include "user.h"
 
+using namespace std;
 using namespace libsinsp;
 
 class usergroup_manager_test : public sinsp_with_test_input

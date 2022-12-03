@@ -17,6 +17,8 @@ limitations under the License.
 #include "util.h"
 #include <sinsp.h>
 
+using namespace std;
+
 //
 // Get the string representation of a ppm_event_category
 //

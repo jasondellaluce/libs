@@ -17,6 +17,7 @@ limitations under the License.
 #include "container_engine/bpm.h"
 #include "sinsp.h"
 
+using namespace std;
 using namespace libsinsp::container_engine;
 
 bool bpm::resolve(sinsp_threadinfo *tinfo, bool query_os_for_missing_info)

@@ -31,6 +31,8 @@ limitations under the License.
 #include "tracer_emitter.h"
 #endif
 
+using namespace std;
+
 extern sinsp_evttables g_infotables;
 
 static void copy_ipv6_address(uint32_t* dest, uint32_t* src)

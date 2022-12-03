@@ -33,6 +33,8 @@ limitations under the License.
 #include <cstring>
 #include "strlcpy.h"
 
+using namespace std;
+
 sinsp_curl_http_headers::sinsp_curl_http_headers():
 	m_curl_header_list(NULL)
 {
